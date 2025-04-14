@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Philosophy Topics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --neon-yellow: #F6F930;
+    }
+
+    .active {
+      background-color: var(--neon-yellow);
+      color: black;
+    }
+
+    .btn-hover:hover {
+      background-color: var(--neon-yellow);
+      color: black;
+    }
+
+    .neon-text {
+      color: var(--neon-yellow);
+    }
+  </style>
+</head>
+<body class="bg-black text-gray-200">
+
+  <div class="flex flex-col md:flex-row h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-full md:w-64 bg-gray-900 shadow-md p-4 md:overflow-y-auto">
+      <h2 class="text-xl font-semibold neon-text mb-4">Philosophy Topics</h2>
+
+      <!-- Dropdown for Mobile -->
+      <div class="md:hidden mb-4">
+        <select id="mobileSelector" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600">
+          <option disabled selected>Select a topic</option>
+          <option value="Introduction to Philosophy">Introduction to Philosophy</option>
+          <option value="Introduction to Critical Thinking">Introduction to Critical Thinking</option>
+          <option value="Introduction to Logic">Introduction to Logic</option>
+          <option value="Philosophical Writing">Philosophical Writing</option>
+          <option value="Intro to Philosophy of Religion">Intro to Philosophy of Religion</option>
+          <option value="Eastern Philosophy">Eastern Philosophy</option>
+          <option value="Introduction to Epistemology">Introduction to Epistemology</option>
+          <option value="Introduction to Metaphysics">Introduction to Metaphysics</option>
+          <option value="Intro to Feminist Philosophies">Intro to Feminist Philosophies</option>
+          <option value="Applied Feminist Care Ethics">Applied Feminist Care Ethics</option>
+          <option value="Intro to Philosophy of Race">Intro to Philosophy of Race</option>
+          <option value="Introduction to Axiology">Introduction to Axiology</option>
+          <option value="Introduction to Ethics">Introduction to Ethics</option>
+          <option value="Social Political Philosophy">Social Political Philosophy</option>
+        </select>
+      </div>
+
+      <!-- Buttons for Desktop -->
+      <div id="topicButtons" class="hidden md:flex flex-col gap-2 text-sm">
+        <!-- Buttons will be inserted here by JavaScript -->
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto p-6">
+      <div id="topicContent" class="bg-gray-800 p-6 rounded shadow text-gray-100">
+        <h2 class="text-2xl font-semibold neon-text">Welcome</h2>
+        <p class="mt-2 text-gray-400">Select a topic from the left to view content.</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const topics = [
+      "Introduction to Philosophy",
+      "Introduction to Critical Thinking",
+      "Introduction to Logic",
+      "Philosophical Writing",
+      "Intro to Philosophy of Religion",
+      "Eastern Philosophy",
+      "Introduction to Epistemology",
+      "Introduction to Metaphysics",
+      "Intro to Feminist Philosophies",
+      "Applied Feminist Care Ethics",
+      "Intro to Philosophy of Race",
+      "Introduction to Axiology",
+      "Introduction to Ethics",
+      "Social Political Philosophy"
+    ];
+
+    const buttonsContainer = document.getElementById('topicButtons');
+    const topicContent = document.getElementById('topicContent');
+    const mobileSelector = document.getElementById('mobileSelector');
+
+    // Render buttons in sidebar
+    topics.forEach(topic => {
+      const btn = document.createElement('button');
+      btn.className = 'text-left px-3 py-2 rounded btn-hover transition bg-gray-800 text-gray-200';
+      btn.textContent = topic;
+      btn.onclick = () => updateContent(topic, btn);
+      buttonsContainer.appendChild(btn);
+    });
+
+    // Handle content update
+    function updateContent(topic, clickedBtn) {
+      topicContent.innerHTML = `
+        <h2 class="text-2xl font-semibold neon-text">${topic}</h2>
+        <p class="mt-2 text-gray-400">[Content for ${topic} will go here]</p>
+      `;
+
+      // Update active button style
+      Array.from(buttonsContainer.children).forEach(btn => btn.classList.remove('active'));
+      if (clickedBtn) clickedBtn.classList.add('active');
+    }
+
+    // Handle mobile dropdown change
+    mobileSelector.addEventListener('change', (e) => {
+      updateContent(e.target.value);
+    });
+  </script>
+
+</body>
+</html>
