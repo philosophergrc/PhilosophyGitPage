@@ -128,18 +128,35 @@
       buttonsContainer.appendChild(btn);
     });
 
-    // Handle content update
     function updateContent(topic, clickedBtn) {
-      topicContent.innerHTML = `
-        <h2 class="text-2xl font-semibold neon-text">${topic}</h2>
-        <p class="mt-2 text-gray-400">[Content for ${topic} will go here]</p>
+  const modules = topicModules[topic];
+
+  let contentHTML = `
+    <h2 class="text-2xl font-semibold neon-text">${topic}</h2>
+  `;
+
+  if (modules && modules.length > 0) {
+    contentHTML += `<ul class="mt-4 space-y-2">`;
+    modules.forEach(module => {
+      contentHTML += `
+        <li>
+          <a href="${module.url}" target="_blank" class="text-blue-400 hover:underline">
+            ${module.title}
+          </a>
+        </li>
       `;
+    });
+    contentHTML += `</ul>`;
+  } else {
+    contentHTML += `<p class="mt-2 text-gray-400">[Content for ${topic} will go here]</p>`;
+  }
 
-      // Update active button style
-      Array.from(buttonsContainer.children).forEach(btn => btn.classList.remove('active'));
-      if (clickedBtn) clickedBtn.classList.add('active');
-    }
+  topicContent.innerHTML = contentHTML;
 
+  // Update active button style
+  Array.from(buttonsContainer.children).forEach(btn => btn.classList.remove('active'));
+  if (clickedBtn) clickedBtn.classList.add('active');
+}
     // Handle mobile dropdown change
     mobileSelector.addEventListener('change', (e) => {
       updateContent(e.target.value);
