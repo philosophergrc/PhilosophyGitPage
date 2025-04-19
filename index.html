@@ -99,7 +99,17 @@
   left: 100%;
 }
 
+/* 7) Extra pulse on hover-out for liveliness */
+#topicContent ul li a:focus,
+#topicContent ul li a:active {
+  animation: pulse 0.8s ease-out;
+}
 
+@keyframes pulse {
+  0%   { transform: scale(1.08); }
+  50%  { transform: scale(1.12); }
+  100% { transform: scale(1.08); }
+}
 
 
   </style>
