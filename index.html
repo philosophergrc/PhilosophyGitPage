@@ -34,25 +34,26 @@
       <h2 class="text-xl font-semibold neon-text mb-4">Philosophy Topics</h2>
 
       <!-- Dropdown for Mobile -->
-      <div class="md:hidden mb-4">
-        <select id="mobileSelector" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600">
-          <option disabled selected>Select a topic</option>
-          <option value="Introduction to Philosophy">Introduction to Philosophy</option>
-          <option value="Introduction to Critical Thinking">Introduction to Critical Thinking</option>
-          <option value="Introduction to Logic">Introduction to Logic</option>
-          <option value="Philosophical Writing">Philosophical Writing</option>
-          <option value="Intro to Philosophy of Religion">Intro to Philosophy of Religion</option>
-          <option value="Eastern Philosophy">Eastern Philosophy</option>
-          <option value="Introduction to Epistemology">Introduction to Epistemology</option>
-          <option value="Introduction to Metaphysics">Introduction to Metaphysics</option>
-          <option value="Intro to Feminist Philosophies">Intro to Feminist Philosophies</option>
-          <option value="Applied Feminist Care Ethics">Applied Feminist Care Ethics</option>
-          <option value="Intro to Philosophy of Race">Intro to Philosophy of Race</option>
-          <option value="Introduction to Axiology">Introduction to Axiology</option>
-          <option value="Introduction to Ethics">Introduction to Ethics</option>
-          <option value="Social Political Philosophy">Social Political Philosophy</option>
-        </select>
-      </div>
+<div class="md:hidden mb-4">
+  <select id="mobileSelector" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600">
+    <option disabled selected>Select a topic</option>
+    <option value="Introduction to Philosophy">Introduction to Philosophy</option>
+    <option value="Introduction to Critical Thinking">Introduction to Critical Thinking</option>
+    <option value="Introduction to Logic">Introduction to Logic</option>
+    <option value="Philosophical Writing">Philosophical Writing</option>
+    <option value="Intro to Philosophy of Religion">Intro to Philosophy of Religion</option> <!-- Check this option -->
+    <option value="Eastern Philosophy">Eastern Philosophy</option>
+    <option value="Introduction to Epistemology">Introduction to Epistemology</option>
+    <option value="Introduction to Metaphysics">Introduction to Metaphysics</option>
+    <option value="Intro to Feminist Philosophies">Intro to Feminist Philosophies</option>
+    <option value="Applied Feminist Care Ethics">Applied Feminist Care Ethics</option>
+    <option value="Intro to Philosophy of Race">Intro to Philosophy of Race</option>
+    <option value="Introduction to Axiology">Introduction to Axiology</option>
+    <option value="Introduction to Ethics">Introduction to Ethics</option>
+    <option value="Social Political Philosophy">Social Political Philosophy</option>
+  </select>
+</div>
+
 
       <!-- Buttons for Desktop -->
       <div id="topicButtons" class="hidden md:flex flex-col gap-2 text-sm">
@@ -455,6 +456,49 @@ const topicModules = {
     }
   ]
 };
+
+ // Function to render the content when a topic is selected
+ function loadTopicContent(topic) {
+    const content = document.getElementById('topicContent');
+    content.innerHTML = `<h2 class="text-2xl font-semibold neon-text mb-4">${topic}</h2>`;
+
+    const modules = topicModules[topic];
+    if (modules && modules.length > 0) {
+      const navBar = document.createElement('nav');
+      navBar.className = 'flex flex-wrap gap-2 mb-4';
+
+      modules.forEach(mod => {
+        const link = document.createElement('a');
+        link.href = mod.url;
+        link.target = '_blank';
+        link.textContent = mod.title;
+        link.className = 'px-3 py-2 rounded bg-gray-700 text-sm hover:bg-yellow-400 hover:text-black transition btn-hover';
+        navBar.appendChild(link);
+      });
+
+      content.appendChild(navBar);
+    } else {
+      content.innerHTML += `<p class="text-gray-400">No modules available for this topic yet.</p>`;
+    }
+  }
+
+  // Populate the sidebar buttons
+  const buttonContainer = document.getElementById('topicButtons');
+  topics.forEach(topic => {
+    const btn = document.createElement('button');
+    btn.textContent = topic;
+    btn.className = 'text-left px-4 py-2 rounded bg-gray-800 hover:bg-yellow-400 hover:text-black transition btn-hover';
+    btn.addEventListener('click', () => loadTopicContent(topic));
+    buttonContainer.appendChild(btn);
+  });
+  buttonContainer.classList.remove('hidden');
+
+  // Handle mobile selector
+  const mobileSelector = document.getElementById('mobileSelector');
+  mobileSelector.addEventListener('change', (e) => {
+    loadTopicContent(e.target.value);
+  });
+</script>
 
 
 
