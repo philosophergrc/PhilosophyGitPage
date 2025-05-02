@@ -24,130 +24,102 @@
       color: var(--neon-yellow);
     }
 
-/* 1) Import a bold display font */
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
-/* 2) Turn the list into a responsive grid */
-#topicContent ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-  padding: 0;
-}
+    #topicContent ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+      padding: 0;
+    }
 
-/* 3) Remove default bullets */
-#topicContent ul li {
-  list-style: none;
-}
+    #topicContent ul li {
+      list-style: none;
+    }
 
-/* 4) Style each <a> as a neon pill button */
-#topicContent ul li a {
-  display: block;
-  position: relative;
-  font-family: 'Russo One', sans-serif;
-  font-size: 1rem;
-  text-align: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 1.5rem;
-  background: rgba(0, 0, 0, 0.4);
-  color: var(--neon-yellow);
-  border: 2px solid var(--neon-yellow);
-  text-decoration: none;
-  box-shadow:
-    0 0 6px var(--neon-yellow),
-    0 0 12px var(--neon-yellow),
-    inset 0 0 4px rgba(0,0,0,0.5);
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease;
-  overflow: hidden;
-  z-index: 0;
-}
+    #topicContent ul li a {
+      display: block;
+      position: relative;
+      font-family: 'Russo One', sans-serif;
+      font-size: 1rem;
+      text-align: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1.5rem;
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--neon-yellow);
+      border: 2px solid var(--neon-yellow);
+      text-decoration: none;
+      box-shadow: 0 0 6px var(--neon-yellow),
+                  0 0 12px var(--neon-yellow),
+                  inset 0 0 4px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease,
+                  background-color 0.3s ease,
+                  color 0.3s ease,
+                  box-shadow 0.3s ease;
+      overflow: hidden;
+      z-index: 0;
+    }
 
-/* 5) Add a sweeping shimmer before hover */
-#topicContent ul li a::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,0.4) 50%,
-    transparent 100%
-  );
-  transition: left 0.6s ease;
-  pointer-events: none;
-  z-index: 1;
-}
+    #topicContent ul li a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.4) 50%,
+        transparent 100%
+      );
+      transition: left 0.6s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
 
-/* 6) Hover effects: glow, color‑flip, grow, and run shimmer */
-#topicContent ul li a:hover {
-  background-color: var(--neon-yellow);
-  color: #111;
-  box-shadow:
-    0 0 10px var(--neon-yellow),
-    0 0 20px var(--neon-yellow),
-    0 0 30px var(--neon-yellow);
-  transform: scale(1.08);
-}
+    #topicContent ul li a:hover {
+      background-color: var(--neon-yellow);
+      color: #111;
+      box-shadow: 0 0 10px var(--neon-yellow),
+                  0 0 20px var(--neon-yellow),
+                  0 0 30px var(--neon-yellow);
+      transform: scale(1.08);
+    }
 
-#topicContent ul li a:hover::before {
-  left: 100%;
-}
+    #topicContent ul li a:hover::before {
+      left: 100%;
+    }
 
-/* 7) Extra pulse on hover-out for liveliness */
-#topicContent ul li a:focus,
-#topicContent ul li a:active {
-  animation: pulse 0.8s ease-out;
-}
+    #topicContent ul li a:focus,
+    #topicContent ul li a:active {
+      animation: pulse 0.8s ease-out;
+    }
 
-@keyframes pulse {
-  0%   { transform: scale(1.08); }
-  50%  { transform: scale(1.12); }
-  100% { transform: scale(1.08); }
-}
-
-
+    @keyframes pulse {
+      0%   { transform: scale(1.08); }
+      50%  { transform: scale(1.12); }
+      100% { transform: scale(1.08); }
+    }
   </style>
 </head>
+
 <body class="bg-black text-gray-200">
-
   <div class="flex flex-col md:flex-row h-screen">
-
     <!-- Sidebar -->
     <aside class="w-full md:w-64 bg-gray-900 shadow-md p-4 md:overflow-y-auto">
       <h2 class="text-xl font-semibold neon-text mb-4">Philosophy Topics</h2>
 
       <!-- Dropdown for Mobile -->
-<div class="md:hidden mb-4">
-  <select id="mobileSelector" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600">
-    <option disabled selected>Select a topic</option>
-    <option value="Introduction to Philosophy">Introduction to Philosophy</option>
-    <option value="Introduction to Critical Thinking">Introduction to Critical Thinking</option>
-    <option value="Introduction to Logic">Introduction to Logic</option>
-    <option value="Philosophical Writing">Philosophical Writing</option>
-    <option value="Intro to Philosophy of Religion">Intro to Philosophy of Religion</option> <!-- Check this option -->
-    <option value="Eastern Philosophy">Eastern Philosophy</option>
-    <option value="Introduction to Epistemology">Introduction to Epistemology</option>
-    <option value="Introduction to Metaphysics">Introduction to Metaphysics</option>
-    <option value="Intro to Feminist Philosophies">Intro to Feminist Philosophies</option>
-    <option value="Applied Feminist Care Ethics">Applied Feminist Care Ethics</option>
-    <option value="Intro to Philosophy of Race">Intro to Philosophy of Race</option>
-    <option value="Introduction to Axiology">Introduction to Axiology</option>
-    <option value="Introduction to Ethics">Introduction to Ethics</option>
-    <option value="Social Political Philosophy">Social Political Philosophy</option>
-  </select>
-</div>
-
+      <div class="md:hidden mb-4">
+        <select id="mobileSelector" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600">
+          <option disabled selected>Select a topic</option>
+        </select>
+      </div>
 
       <!-- Buttons for Desktop -->
-      <div id="topicButtons" class="hidden md:flex flex-col gap-2 text-sm">
-        <!-- Buttons will be inserted here by JavaScript -->
-      </div>
+      <div id="topicButtons" class="hidden md:flex flex-col gap-2 text-sm"></div>
     </aside>
 
     <!-- Main Content Area -->
@@ -177,7 +149,7 @@
       "Social Political Philosophy"
     ];
 
-// Links for chapter modules - Author: Blake Hansen
+    // Links for chapter modules - Author: Blake Hansen
 const topicModules = {
   "Introduction to Philosophy": [
     {
@@ -546,98 +518,55 @@ const topicModules = {
   ]
 };
 
- // Function to render the content when a topic is selected
- function loadTopicContent(topic) {
-    const content = document.getElementById('topicContent');
-    content.innerHTML = `<h2 class="text-2xl font-semibold neon-text mb-4">${topic}</h2>`;
+    function loadTopicContent(topic) {
+      const content = document.getElementById('topicContent');
+      content.innerHTML = `<h2 class="text-2xl font-semibold neon-text mb-4">${topic}</h2>`;
 
-    const modules = topicModules[topic];
-    if (modules && modules.length > 0) {
-      const navBar = document.createElement('nav');
-      navBar.className = 'flex flex-wrap gap-2 mb-4';
+      const modules = topicModules[topic];
+      if (modules && modules.length > 0) {
+        const navBar = document.createElement('nav');
+        navBar.className = 'flex flex-wrap gap-2 mb-4';
 
-      modules.forEach(mod => {
-        const link = document.createElement('a');
-        link.href = mod.url;
-        link.target = '_blank';
-        link.textContent = mod.title;
-        link.className = 'px-3 py-2 rounded bg-gray-700 text-sm hover:bg-yellow-400 hover:text-black transition btn-hover';
-        navBar.appendChild(link);
-      });
+        modules.forEach(mod => {
+          const link = document.createElement('a');
+          link.href = mod.url;
+          link.target = '_blank';
+          link.textContent = mod.title;
+          link.className = 'px-3 py-2 rounded bg-gray-700 text-sm hover:bg-yellow-400 hover:text-black transition btn-hover';
+          navBar.appendChild(link);
+        });
 
-      content.appendChild(navBar);
-    } else {
-      content.innerHTML += `<p class="text-gray-400">No modules available for this topic yet.</p>`;
+        content.appendChild(navBar);
+      } else {
+        content.innerHTML += `<p class="text-gray-400">No modules available for this topic yet.</p>`;
+      }
     }
-  }
 
-  // Populate the sidebar buttons
-  const buttonContainer = document.getElementById('topicButtons');
-  topics.forEach(topic => {
-    const btn = document.createElement('button');
-    btn.textContent = topic;
-    btn.className = 'text-left px-4 py-2 rounded bg-gray-800 hover:bg-yellow-400 hover:text-black transition btn-hover';
-    btn.addEventListener('click', () => loadTopicContent(topic));
-    buttonContainer.appendChild(btn);
-  });
-  buttonContainer.classList.remove('hidden');
-
-  // Handle mobile selector
-  const mobileSelector = document.getElementById('mobileSelector');
-  mobileSelector.addEventListener('change', (e) => {
-    loadTopicContent(e.target.value);
-  });
-</script>
-
-
-
-    const buttonsContainer = document.getElementById('topicButtons');
-    const topicContent = document.getElementById('topicContent');
-    const mobileSelector = document.getElementById('mobileSelector');
-
-    // Render buttons in sidebar
+    // Populate sidebar buttons
+    const buttonContainer = document.getElementById('topicButtons');
     topics.forEach(topic => {
       const btn = document.createElement('button');
-      btn.className = 'text-left px-3 py-2 rounded btn-hover transition bg-gray-800 text-gray-200';
       btn.textContent = topic;
-      btn.onclick = () => updateContent(topic, btn);
-      buttonsContainer.appendChild(btn);
+      btn.className = 'text-left px-4 py-2 rounded bg-gray-800 hover:bg-yellow-400 hover:text-black transition btn-hover';
+      btn.addEventListener('click', () => {
+        loadTopicContent(topic);
+        // Highlight active
+        Array.from(buttonContainer.children).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+      buttonContainer.appendChild(btn);
     });
+    buttonContainer.classList.remove('hidden');
 
-    function updateContent(topic, clickedBtn) {
-  const modules = topicModules[topic];
-
-  let contentHTML = `
-    <h2 class="text-2xl font-semibold neon-text">${topic}</h2>
-  `;
-
-  if (modules && modules.length > 0) {
-    contentHTML += `<ul class="mt-4 space-y-2">`;
-    modules.forEach(module => {
-      contentHTML += `
-        <li>
-          <a href="${module.url}" target="_blank" class="text-blue-400 hover:underline">
-            ${module.title}
-          </a>
-        </li>
-      `;
+    // Populate mobile dropdown
+    const mobileSelector = document.getElementById('mobileSelector');
+    topics.forEach(topic => {
+      const option = document.createElement('option');
+      option.value = topic;
+      option.textContent = topic;
+      mobileSelector.appendChild(option);
     });
-    contentHTML += `</ul>`;
-  } else {
-    contentHTML += `<p class="mt-2 text-gray-400">[Content for ${topic} will go here]</p>`;
-  }
-
-  topicContent.innerHTML = contentHTML;
-
-  // Update active button style
-  Array.from(buttonsContainer.children).forEach(btn => btn.classList.remove('active'));
-  if (clickedBtn) clickedBtn.classList.add('active');
-}
-    // Handle mobile dropdown change
-    mobileSelector.addEventListener('change', (e) => {
-      updateContent(e.target.value);
-    });
+    mobileSelector.addEventListener('change', (e) => loadTopicContent(e.target.value));
   </script>
-
 </body>
 </html>
