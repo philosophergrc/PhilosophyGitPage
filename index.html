@@ -23,6 +23,27 @@
     .neon-text {
       color: var(--neon-yellow);
     }
+   
+    img {
+      width: auto;
+      height: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+      .preview-wrapper {
+        width: 100%;
+        max-height: none; /* or increase this if you want a cap */
+        overflow: visible; /* allow full rendering */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+
 
     @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
@@ -154,11 +175,16 @@ const topicModules = {
   "Introduction to Philosophy": [
     {
       title: "Part 1: What is Philosophy?",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/introduction-to-philosophy-logic"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/introduction-to-philosophy-logic",
+      description: "Explore the fundamental question: What is philosophy?",
+      image: "images/What is Philosophy.png"
+      
     },
     {
       title: "Part 2: Why Study Philosophy?",
-      url: "https://www.philosop-her.com/learn-something/why"
+      url: "https://www.philosop-her.com/learn-something/why",
+      description: "Explore the fundamental question: What is philosophy?",
+      image: "images/why-ph.png"
     },
     {
       title: "Part 3: Comparing Thinkers",
@@ -518,29 +544,51 @@ const topicModules = {
   ]
 };
 
-    function loadTopicContent(topic) {
-      const content = document.getElementById('topicContent');
-      content.innerHTML = `<h2 class="text-2xl font-semibold neon-text mb-4">${topic}</h2>`;
+function loadTopicContent(topic) {
+    const content = document.getElementById('topicContent');
+    content.innerHTML = `<h2 class="text-2xl font-semibold neon-text mb-4">${topic}</h2>`;
 
-      const modules = topicModules[topic];
-      if (modules && modules.length > 0) {
-        const navBar = document.createElement('nav');
-        navBar.className = 'flex flex-wrap gap-2 mb-4';
+    const modules = topicModules[topic];
+    if (modules && modules.length > 0) {
+      const moduleContainer = document.createElement('div');
+      moduleContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4';
 
-        modules.forEach(mod => {
-          const link = document.createElement('a');
-          link.href = mod.url;
-          link.target = '_blank';
-          link.textContent = mod.title;
-          link.className = 'px-3 py-2 rounded bg-gray-700 text-sm hover:bg-yellow-400 hover:text-black transition btn-hover';
-          navBar.appendChild(link);
-        });
+      modules.forEach(mod => {
+        const moduleCard = document.createElement('div');
+        moduleCard.className = 'bg-gray-700 p-4 rounded shadow hover:shadow-lg transition';
 
-        content.appendChild(navBar);
-      } else {
-        content.innerHTML += `<p class="text-gray-400">No modules available for this topic yet.</p>`;
-      }
+        const image = document.createElement('img');
+        image.src = mod.image;
+        image.alt = mod.title;
+        image.className = 'w-full h-32 object-cover rounded mb-2';
+
+        const title = document.createElement('h3');
+        title.textContent = mod.title;
+        title.className = 'text-lg font-semibold text-yellow-400 mb-2';
+
+        const description = document.createElement('p');
+        description.textContent = mod.description;
+        description.className = 'text-gray-300 text-sm mb-4';
+
+        const link = document.createElement('a');
+        link.href = mod.url;
+        link.target = '_blank';
+        link.textContent = 'Read More';
+        link.className = 'inline-block px-3 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 transition';
+
+        moduleCard.appendChild(image);
+        moduleCard.appendChild(title);
+        moduleCard.appendChild(description);
+        moduleCard.appendChild(link);
+
+        moduleContainer.appendChild(moduleCard);
+      });
+
+      content.appendChild(moduleContainer);
+    } else {
+      content.innerHTML += `<p class="text-gray-400">No modules available for this topic yet.</p>`;
     }
+  }
 
     // Populate sidebar buttons
     const buttonContainer = document.getElementById('topicButtons');
@@ -567,6 +615,21 @@ const topicModules = {
       mobileSelector.appendChild(option);
     });
     mobileSelector.addEventListener('change', (e) => loadTopicContent(e.target.value));
+
+    const moduleDiv = document.createElement("div");
+
+// Create image preview if image URL exists
+if (module.image) {
+  const previewWrapper = document.createElement("div");
+  previewWrapper.className = "preview-wrapper";
+
+  const img = document.createElement("img");
+  img.src = module.image;
+  img.alt = module.title;
+
+  previewWrapper.appendChild(img);   // <- Put image inside the wrapper
+  moduleDiv.appendChild(previewWrapper);
+}
   </script>
 </body>
 </html>
