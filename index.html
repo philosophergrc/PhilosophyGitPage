@@ -223,7 +223,8 @@ const topicModules = {
     },
     {
       title: "Part 3: Comparing Thinkers",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/introduction-to-philosophy-logic/comparing-thinkers"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/introduction-to-philosophy-logic/comparing-thinkers",
+      image: ""
     },
     {
       title: "Part 4: Timeline of Philosophers",
@@ -238,7 +239,8 @@ const topicModules = {
   "Introduction to Critical Thinking": [
     {
       title: "Part 1: FREE Critical Thinking Book",
-      url: "https://openwa.pressbooks.pub/howtothinkforyourself/"
+      url: "https://openwa.pressbooks.pub/howtothinkforyourself/",
+       image: "images/What is Philosophy.png"
     },
     {
       title: "Part 2: Fallacies (Errors in Reasoning)",
@@ -261,7 +263,8 @@ const topicModules = {
   "Introduction to Logic": [
     {
       title: "Parts 1-2: Basic Concepts, Identifying & Evaluating Arguments",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/symbolic-logic/basic-concepts"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/symbolic-logic/basic-concepts",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Parts 3-4: Valid Argument Forms, Propositional Logic",
@@ -280,7 +283,8 @@ const topicModules = {
   "Philosophical Writing": [
     {
       title: "Part 1-2: PRESENT",
-      url: "https://www.philosop-her.com/learn-something/writing/1-present"
+      url: "https://www.philosop-her.com/learn-something/writing/1-present",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 3-5: EXPLAIN",
@@ -299,7 +303,8 @@ const topicModules = {
   "Intro to Philosophy of Religion": [
     {
       title: "Part 1: Introduction to Philosophy of Religion",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/religions"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/religions",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 2: Comparing Major World Religions",
@@ -330,7 +335,8 @@ const topicModules = {
   "Eastern Philosophy": [
     {
       title: "Ancient Indian Traditions",
-      url: ""
+      url: "",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 2: Hinduism",
@@ -357,7 +363,8 @@ const topicModules = {
   "Introduction to Epistemology": [
     {
       title: "Traditional Epistemology",
-      url: ""
+      url: "",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 1: Intro to Epistemology (the study of knowledge)",
@@ -396,7 +403,8 @@ const topicModules = {
   "Introduction to Metaphysics": [
     {
       title: "Traditional Ontologies",
-      url: ""
+      url: "",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 1: Intro to Metaphysics (study of the nature of reality)",
@@ -435,7 +443,8 @@ const topicModules = {
   "Intro to Feminist Philosophies": [
     {
       title: "Traditional Feminist Philosophies",
-      url: ""
+      url: "",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 1: Intro to Feminisms (breaking stereotypes)",
@@ -462,7 +471,8 @@ const topicModules = {
   "Applied Feminist Care Ethics": [
     {
       title: "Part 1: Introduction to Feminist Ethics",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics/problems-in-ethics"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics/problems-in-ethics",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 2: Epistemic Injustice",
@@ -489,7 +499,8 @@ const topicModules = {
   "Intro to Philosophy of Race": [
     {
       title: "Part 1: Philosophy of Race (What is race?)",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/race"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/race",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 2: Key Figures & Concepts",
@@ -508,7 +519,8 @@ const topicModules = {
   "Introduction to Axiology": [
     {
       title: "Part 1: Introduction to Values & Ethics",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 2: Traditional Ethical Theories",
@@ -527,7 +539,8 @@ const topicModules = {
   "Introduction to Ethics": [
     {
       title: "Part 1: Introduction to Values & Ethics",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 2: Traditional Ethical Theories",
@@ -554,7 +567,8 @@ const topicModules = {
   "Social Political Philosophy": [
     {
       title: "Part 1: Introduction to Social & Political Philosophy",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/social-political-philosophy"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/social-political-philosophy",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 2: Traditional Theories of Justice (fairness)",
@@ -578,61 +592,60 @@ const topicModules = {
     }
   ]
 };
+let currentPreview = null; // Keep this at the top
 
-  
-let currentPreview = null; // To keep track of the currently open preview
-
+// **Move the showModulePreview function definition here**
 function showModulePreview(module) {
-      const previewArea = document.getElementById('modulePreviewArea');
+  const previewArea = document.getElementById('modulePreviewArea');
 
-      if (currentPreview) {
-        previewArea.removeChild(currentPreview);
-        currentPreview = null;
-      }
+  if (currentPreview) {
+    previewArea.removeChild(currentPreview);
+    currentPreview = null;
+  }
 
-      const previewDiv = document.createElement('div');
-      previewDiv.className = 'module-preview';
+  const previewDiv = document.createElement('div');
+  previewDiv.className = 'module-preview';
 
-      const previewWrapper = document.createElement('div');
-      previewWrapper.className = 'preview-wrapper';
+  const previewWrapper = document.createElement('div');
+  previewWrapper.className = 'preview-wrapper';
 
-      if (module.image) {
-        const img = document.createElement('img');
-        img.src = module.image;
-        img.alt = module.title;
-        previewWrapper.appendChild(img);
-      } else {
-        // Create a default icon element (you can use any icon library or a simple text icon)
-        const defaultIcon = document.createElement('div');
-        defaultIcon.className = 'default-icon';
-        defaultIcon.textContent = '📚'; // Example text icon
-        previewWrapper.appendChild(defaultIcon);
-      }
+  if (module.image) {
+    const img = document.createElement('img');
+    img.src = module.image;
+    img.alt = module.title;
+    previewWrapper.appendChild(img);
+  } else {
+    const defaultIcon = document.createElement('div');
+    defaultIcon.className = 'default-icon';
+    defaultIcon.textContent = '📚'; // Or your preferred icon
+    previewWrapper.appendChild(defaultIcon);
+  }
 
-      previewDiv.appendChild(previewWrapper);
+  previewDiv.appendChild(previewWrapper);
 
-      if (module.description) {
-        const description = document.createElement('p');
-        description.className = 'mt-2 text-gray-300';
-        description.textContent = module.description;
-        previewDiv.appendChild(description);
-      }
+  if (module.description) {
+    const description = document.createElement('p');
+    description.className = 'mt-2 text-gray-300';
+    description.textContent = module.description;
+    previewDiv.appendChild(description);
+  }
 
-      const link = document.createElement('a');
-      link.href = module.url;
-      link.target = '_blank';
-      link.textContent = `Learn more about "${module.title}"`;
-      link.className = 'block mt-3';
-      previewDiv.appendChild(link);
+  const link = document.createElement('a');
+  link.href = module.url;
+  link.target = '_blank';
+  link.textContent = `Learn more about "${module.title}"`;
+  link.className = 'block mt-3';
+  previewDiv.appendChild(link);
 
-      previewArea.appendChild(previewDiv);
-      currentPreview = previewDiv;
-    }
-    
+  previewArea.appendChild(previewDiv);
+  currentPreview = previewDiv;
+}
+
 function loadTopicContent(topic) {
   const content = document.getElementById('topicContent');
   content.innerHTML = `<h2 class="text-2xl font-semibold neon-text mb-4">${topic}</h2><div id="modulePreviewArea"></div>`;
-  const modulePreviewArea = document.getElementById('modulePreviewArea'); // Ensure preview area is present
+  const modulePreviewArea = document.getElementById('modulePreviewArea');
+  currentPreview = null;
 
   const modules = topicModules[topic];
   if (modules && modules.length > 0) {
@@ -646,7 +659,7 @@ function loadTopicContent(topic) {
       link.textContent = mod.title;
       link.className = 'px-3 py-2 rounded bg-gray-700 text-sm hover:bg-yellow-400 hover:text-black transition btn-hover';
       link.addEventListener('click', (event) => {
-        event.preventDefault(); // Stop the default link behavior
+        event.preventDefault();
         showModulePreview(mod);
       });
       navBar.appendChild(link);
@@ -687,10 +700,10 @@ mobileSelector.addEventListener('change', (e) => loadTopicContent(e.target.value
 // Load the first topic by default
 if (topics.length > 0) {
   loadTopicContent(topics[0]);
-  if (buttonContainer.     buttonContainer.children.length > 0) {
-        buttonContainer.children[0].classList.add('active');
-      }
-    }
+  if (buttonContainer && buttonContainer.children.length > 0) { // Added a check for buttonContainer
+    buttonContainer.children[0].classList.add('active');
+  }
+}
   </script>
 </body>
 </html>
