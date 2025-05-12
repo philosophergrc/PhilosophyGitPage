@@ -23,7 +23,7 @@
     .neon-text {
       color: var(--neon-yellow);
     }
-
+   
     img {
       width: auto;
       height: 100%;
@@ -33,51 +33,17 @@
       margin: 0 auto;
     }
 
-    .preview-wrapper {
-      width: 100%;
-      max-height: 200px; /* Keep a maximum height */
-      overflow: hidden; /* Hide any overflow */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.1); /* Optional background for better visibility of the icon */
-      border-radius: 0.5rem; /* Optional matching border radius */
-      margin-bottom: 1rem; /* Add some space below the image/icon area */
-    }
+      .preview-wrapper {
+        width: 100%;
+        max-height: none; /* or increase this if you want a cap */
+        overflow: visible; /* allow full rendering */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
 
-    .preview-wrapper img {
-      width: 100%; /* Make the image try to fill the width */
-      height: auto; /* Maintain aspect ratio */
-      max-height: 180px; /* Slightly less than wrapper to ensure some padding */
-      object-fit: contain; /* Maintain aspect ratio and fit within the bounds */
-      display: block;
-      margin: 0 auto;
-    }
 
-    .preview-wrapper .default-icon {
-      font-size: 3rem; /* Adjust size as needed */
-      color: var(--neon-yellow);
-    }
-
-    .module-preview {
-      background-color: rgba(0, 0, 0, 0.6);
-      border: 1px solid var(--neon-yellow);
-      border-radius: 0.5rem;
-      padding: 1rem;
-      margin-top: 1rem;
-      color: var(--neon-yellow);
-      box-shadow: 0 0 4px var(--neon-yellow);
-    }
-
-    .module-preview a {
-      color: var(--neon-yellow);
-      text-decoration: underline;
-    }
-
-    .module-preview a:hover {
-      color: white;
-    }
 
     @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
@@ -168,7 +134,7 @@
 
       <!-- Dropdown for Mobile -->
       <div class="md:hidden mb-4">
-        <select id="mobileSelector" class="w-full p-2xarounded bg-gray-800 text-white border border-gray-600">
+        <select id="mobileSelector" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600">
           <option disabled selected>Select a topic</option>
         </select>
       </div>
@@ -223,8 +189,7 @@ const topicModules = {
     },
     {
       title: "Part 3: Comparing Thinkers",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/introduction-to-philosophy-logic/comparing-thinkers",
-      image: ""
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/introduction-to-philosophy-logic/comparing-thinkers"
     },
     {
       title: "Part 4: Timeline of Philosophers",
@@ -239,8 +204,7 @@ const topicModules = {
   "Introduction to Critical Thinking": [
     {
       title: "Part 1: FREE Critical Thinking Book",
-      url: "https://openwa.pressbooks.pub/howtothinkforyourself/",
-       image: "images/What is Philosophy.png"
+      url: "https://openwa.pressbooks.pub/howtothinkforyourself/"
     },
     {
       title: "Part 2: Fallacies (Errors in Reasoning)",
@@ -263,8 +227,7 @@ const topicModules = {
   "Introduction to Logic": [
     {
       title: "Parts 1-2: Basic Concepts, Identifying & Evaluating Arguments",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/symbolic-logic/basic-concepts",
-      image: "images/What is Philosophy.png"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/symbolic-logic/basic-concepts"
     },
     {
       title: "Parts 3-4: Valid Argument Forms, Propositional Logic",
@@ -283,8 +246,7 @@ const topicModules = {
   "Philosophical Writing": [
     {
       title: "Part 1-2: PRESENT",
-      url: "https://www.philosop-her.com/learn-something/writing/1-present",
-      image: "images/What is Philosophy.png"
+      url: "https://www.philosop-her.com/learn-something/writing/1-present"
     },
     {
       title: "Part 3-5: EXPLAIN",
@@ -303,8 +265,7 @@ const topicModules = {
   "Intro to Philosophy of Religion": [
     {
       title: "Part 1: Introduction to Philosophy of Religion",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/religions",
-      image: "images/What is Philosophy.png"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/religions"
     },
     {
       title: "Part 2: Comparing Major World Religions",
@@ -335,8 +296,7 @@ const topicModules = {
   "Eastern Philosophy": [
     {
       title: "Ancient Indian Traditions",
-      url: "",
-      image: "images/What is Philosophy.png"
+      url: ""
     },
     {
       title: "Part 2: Hinduism",
@@ -363,8 +323,7 @@ const topicModules = {
   "Introduction to Epistemology": [
     {
       title: "Traditional Epistemology",
-      url: "",
-      image: "images/What is Philosophy.png"
+      url: ""
     },
     {
       title: "Part 1: Intro to Epistemology (the study of knowledge)",
@@ -403,8 +362,7 @@ const topicModules = {
   "Introduction to Metaphysics": [
     {
       title: "Traditional Ontologies",
-      url: "",
-      image: "images/What is Philosophy.png"
+      url: ""
     },
     {
       title: "Part 1: Intro to Metaphysics (study of the nature of reality)",
@@ -442,13 +400,9 @@ const topicModules = {
 
   "Intro to Feminist Philosophies": [
     {
-      title: "Traditional Feminist Philosophies",
-      url: "",
-      image: "images/What is Philosophy.png"
-    },
-    {
       title: "Part 1: Intro to Feminisms (breaking stereotypes)",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/feminism"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/feminism",
+      image: "images/What is Philosophy.png"
     },
     {
       title: "Part 2: Introduction to Black Feminisms",
@@ -471,8 +425,7 @@ const topicModules = {
   "Applied Feminist Care Ethics": [
     {
       title: "Part 1: Introduction to Feminist Ethics",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics/problems-in-ethics",
-      image: "images/What is Philosophy.png"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics/problems-in-ethics"
     },
     {
       title: "Part 2: Epistemic Injustice",
@@ -499,8 +452,7 @@ const topicModules = {
   "Intro to Philosophy of Race": [
     {
       title: "Part 1: Philosophy of Race (What is race?)",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/race",
-      image: "images/What is Philosophy.png"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/race"
     },
     {
       title: "Part 2: Key Figures & Concepts",
@@ -519,8 +471,7 @@ const topicModules = {
   "Introduction to Axiology": [
     {
       title: "Part 1: Introduction to Values & Ethics",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics",
-      image: "images/What is Philosophy.png"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics"
     },
     {
       title: "Part 2: Traditional Ethical Theories",
@@ -539,8 +490,7 @@ const topicModules = {
   "Introduction to Ethics": [
     {
       title: "Part 1: Introduction to Values & Ethics",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics",
-      image: "images/What is Philosophy.png"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/ethics"
     },
     {
       title: "Part 2: Traditional Ethical Theories",
@@ -567,8 +517,7 @@ const topicModules = {
   "Social Political Philosophy": [
     {
       title: "Part 1: Introduction to Social & Political Philosophy",
-      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/social-political-philosophy",
-      image: "images/What is Philosophy.png"
+      url: "https://www.philosop-her.com/gig-%CF%86-philosophy/social-political-philosophy"
     },
     {
       title: "Part 2: Traditional Theories of Justice (fairness)",
@@ -594,117 +543,93 @@ const topicModules = {
 };
 let currentPreview = null; // Keep this at the top
 
-// **Move the showModulePreview function definition here**
-function showModulePreview(module) {
-  const previewArea = document.getElementById('modulePreviewArea');
-
-  if (currentPreview) {
-    previewArea.removeChild(currentPreview);
-    currentPreview = null;
-  }
-
-  const previewDiv = document.createElement('div');
-  previewDiv.className = 'module-preview';
-
-  const previewWrapper = document.createElement('div');
-  previewWrapper.className = 'preview-wrapper';
-
-  if (module.image) {
-    const img = document.createElement('img');
-    img.src = module.image;
-    img.alt = module.title;
-    previewWrapper.appendChild(img);
-  } else {
-    const defaultIcon = document.createElement('div');
-    defaultIcon.className = 'default-icon';
-    defaultIcon.textContent = '📚'; // Or your preferred icon
-    previewWrapper.appendChild(defaultIcon);
-  }
-
-  previewDiv.appendChild(previewWrapper);
-
-  if (module.description) {
-    const description = document.createElement('p');
-    description.className = 'mt-2 text-gray-300';
-    description.textContent = module.description;
-    previewDiv.appendChild(description);
-  }
-
-  const link = document.createElement('a');
-  link.href = module.url;
-  link.target = '_blank';
-  link.textContent = `Learn more about "${module.title}"`;
-  link.className = 'block mt-3';
-  previewDiv.appendChild(link);
-
-  previewArea.appendChild(previewDiv);
-  currentPreview = previewDiv;
-}
-
 function loadTopicContent(topic) {
-  const content = document.getElementById('topicContent');
-  content.innerHTML = `<h2 class="text-2xl font-semibold neon-text mb-4">${topic}</h2><div id="modulePreviewArea"></div>`;
-  const modulePreviewArea = document.getElementById('modulePreviewArea');
-  currentPreview = null;
+    const content = document.getElementById('topicContent');
+    content.innerHTML = `<h2 class="text-2xl font-semibold neon-text mb-4">${topic}</h2>`;
 
-  const modules = topicModules[topic];
-  if (modules && modules.length > 0) {
-    const navBar = document.createElement('nav');
-    navBar.className = 'flex flex-wrap gap-2 mb-4';
+    const modules = topicModules[topic];
+    if (modules && modules.length > 0) {
+      const moduleContainer = document.createElement('div');
+      moduleContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4';
 
-    modules.forEach(mod => {
-      const link = document.createElement('a');
-      link.href = mod.url;
-      link.target = '_blank';
-      link.textContent = mod.title;
-      link.className = 'px-3 py-2 rounded bg-gray-700 text-sm hover:bg-yellow-400 hover:text-black transition btn-hover';
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
-        showModulePreview(mod);
+      modules.forEach(mod => {
+        const moduleCard = document.createElement('div');
+        moduleCard.className = 'bg-gray-700 p-4 rounded shadow hover:shadow-lg transition';
+
+        const image = document.createElement('img');
+        image.src = mod.image;
+        image.alt = mod.title;
+        image.className = 'w-full h-32 object-cover rounded mb-2';
+
+        const title = document.createElement('h3');
+        title.textContent = mod.title;
+        title.className = 'text-lg font-semibold text-yellow-400 mb-2';
+
+        const description = document.createElement('p');
+        description.textContent = mod.description;
+        description.className = 'text-gray-300 text-sm mb-4';
+
+        const link = document.createElement('a');
+        link.href = mod.url;
+        link.target = '_blank';
+        link.textContent = 'Read More';
+        link.className = 'inline-block px-3 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 transition';
+
+        moduleCard.appendChild(image);
+        moduleCard.appendChild(title);
+        moduleCard.appendChild(description);
+        moduleCard.appendChild(link);
+
+        moduleContainer.appendChild(moduleCard);
       });
-      navBar.appendChild(link);
+
+      content.appendChild(moduleContainer);
+    } else {
+      content.innerHTML += `<p class="text-gray-400">No modules available for this topic yet.</p>`;
+    }
+  }
+
+    // Populate sidebar buttons
+    const buttonContainer = document.getElementById('topicButtons');
+    topics.forEach(topic => {
+      const btn = document.createElement('button');
+      btn.textContent = topic;
+      btn.className = 'text-left px-4 py-2 rounded bg-gray-800 hover:bg-yellow-400 hover:text-black transition btn-hover';
+      btn.addEventListener('click', () => {
+        loadTopicContent(topic);
+        // Highlight active
+        Array.from(buttonContainer.children).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+      buttonContainer.appendChild(btn);
     });
+    buttonContainer.classList.remove('hidden');
 
-    content.appendChild(navBar);
-  } else {
-    content.innerHTML += `<p class="text-gray-400">No modules available for this topic yet.</p>`;
-  }
-}
+    // Populate mobile dropdown
+    const mobileSelector = document.getElementById('mobileSelector');
+    topics.forEach(topic => {
+      const option = document.createElement('option');
+      option.value = topic;
+      option.textContent = topic;
+      mobileSelector.appendChild(option);
+    });
+    mobileSelector.addEventListener('change', (e) => loadTopicContent(e.target.value));
 
-// Populate sidebar buttons
-const buttonContainer = document.getElementById('topicButtons');
-topics.forEach(topic => {
-  const btn = document.createElement('button');
-  btn.textContent = topic;
-  btn.className = 'text-left px-4 py-2 rounded bg-gray-800 hover:bg-yellow-400 hover:text-black transition btn-hover';
-  btn.addEventListener('click', () => {
-    loadTopicContent(topic);
-    // Highlight active
-    Array.from(buttonContainer.children).forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  });
-  buttonContainer.appendChild(btn);
-});
-buttonContainer.classList.remove('hidden');
+    const moduleDiv = document.createElement("div");
 
-// Populate mobile dropdown
-const mobileSelector = document.getElementById('mobileSelector');
-topics.forEach(topic => {
-  const option = document.createElement('option');
-  option.value = topic;
-  option.textContent = topic;
-  mobileSelector.appendChild(option);
-});
-mobileSelector.addEventListener('change', (e) => loadTopicContent(e.target.value));
+// Create image preview if image URL exists
+if (module.image) {
+  const previewWrapper = document.createElement("div");
+  previewWrapper.className = "preview-wrapper";
 
-// Load the first topic by default
-if (topics.length > 0) {
-  loadTopicContent(topics[0]);
-  if (buttonContainer && buttonContainer.children.length > 0) { // Added a check for buttonContainer
-    buttonContainer.children[0].classList.add('active');
-  }
+  const img = document.createElement("img");
+  img.src = module.image;
+  img.alt = module.title;
+
+  previewWrapper.appendChild(img);   // <- Put image inside the wrapper
+  moduleDiv.appendChild(previewWrapper);
 }
   </script>
 </body>
 </html>
- 
+<!-- End of HTML -->
