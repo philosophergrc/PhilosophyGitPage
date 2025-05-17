@@ -565,7 +565,8 @@ function loadTopicContent(topic) {
 
       modules.forEach(mod => {
         const moduleCard = document.createElement('div');
-        moduleCard.className = 'bg-gray-700 p-4 rounded shadow hover:shadow-lg transition';
+        // Added 'moduleCard' class
+        moduleCard.className = 'bg-gray-700 p-4 rounded shadow hover:shadow-lg transition moduleCard';
 
         const image = document.createElement('img');
         image.src = mod.image;
