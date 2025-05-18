@@ -6,6 +6,11 @@
   <title>Philosophy Topics</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    body, html {
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+
     :root {
       --neon-yellow: #F6F930;
     }
@@ -33,17 +38,17 @@
       margin: 0 auto;
     }
 
-      .preview-wrapper {
-        width: 100%;
-        max-height: none; /* or increase this if you want a cap */
-        overflow: visible; /* allow full rendering */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-      }
+    .preview-wrapper {
+      position: relative;
+      overflow: visible; /* This allows the image to spill out */
+    }
 
-
+    .preview-wrapper img {
+      transition: transform 0.3s ease;
+      transform-origin: center center;
+      z-index: 10;
+      position: relative;
+    }
 
     @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
@@ -129,16 +134,77 @@
       transition: transform 0.3s ease; /* For Smooth transition */
     }
 
-    /* Enlarge image on hover */
-    .moduleCard img:hover {
-     transform: scale(1.3); 
+    .preview-wrapper img {
+    transition: transform 0.3s ease;
+    transform-origin: center center;
     }
-    
-  </style>
+
+    /* Make image larger on hover */
+    .preview-wrapper:hover img {
+      transform: scale(1.25);
+      z-index: 10;
+      position: relative;
+    }
+
+  /* Media querie for being mobile friendly */
+  @media (max-width: 768px) {
+  /* Hide desktop-only buttons */
+  #topicButtons {
+    display: none !important;
+  }
+
+  /* Show topic content when selected */
+  #topicContent.active {
+    display: block !important;
+    margin-top: 1rem;
+  }
+
+  #topicContent {
+    display: none !important;
+  }
+
+  /* Show mobile dropdown */
+  #mobileSelector {
+    display: block !important;
+    width: 100% !important;
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  aside h2 {
+    display: none !important;
+  }
+
+  .moduleCard {
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+  }
+
+  .moduleCard img {
+    height: 6rem;
+  }
+
+  #topicContent .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  h2, h3 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+}
+
+</style>
+
+
 </head>
 
-<body class="bg-black text-gray-200">
-  <div class="flex flex-col md:flex-row h-screen">
+<body class="bg-black text-gray-200 overflow-x-hidden">
+  <div class="flex flex-col md:flex-row min-h-screen">
     <!-- Sidebar -->
     <aside class="w-full md:w-64 bg-gray-900 shadow-md p-4 md:overflow-y-auto">
       <h2 class="text-xl font-semibold neon-text mb-4">Philosophy Topics</h2>
@@ -555,51 +621,66 @@ const topicModules = {
 let currentPreview = null; // Keep this at the top
 
 function loadTopicContent(topic) {
-    const content = document.getElementById('topicContent');
-    content.innerHTML = `<h2 class="text-2xl font-semibold neon-text mb-4">${topic}</h2>`;
+  const content = document.getElementById('topicContent');
+  content.classList.add('active'); // For phone view
+  content.innerHTML = ''; // Clear previous content
+  const heading = document.createElement('h2');
+  heading.className = 'text-2xl font-semibold neon-text mb-4';
+  heading.textContent = topic;
+  content.appendChild(heading);
 
-    const modules = topicModules[topic];
-    if (modules && modules.length > 0) {
-      const moduleContainer = document.createElement('div');
-      moduleContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4';
 
-      modules.forEach(mod => {
-        const moduleCard = document.createElement('div');
-        // Added 'moduleCard' class
-        moduleCard.className = 'bg-gray-700 p-4 rounded shadow hover:shadow-lg transition moduleCard';
+  const modules = topicModules[topic];
+  if (modules && modules.length > 0) {
+    const moduleContainer = document.createElement('div');
+    moduleContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4';
 
-        const image = document.createElement('img');
+    modules.forEach(mod => {
+      const moduleCard = document.createElement('div');
+      moduleCard.className = 'bg-gray-700 p-4 rounded shadow hover:shadow-lg transition moduleCard';
+
+      // Imgage preview wrapper — only add if image exists
+      if (mod.image) {
+        const previewWrapper = document.createElement("div");
+        previewWrapper.className = "preview-wrapper";
+
+        const image = document.createElement("img");
         image.src = mod.image;
         image.alt = mod.title;
         image.className = 'w-full h-32 object-cover rounded mb-2';
 
-        const title = document.createElement('h3');
-        title.textContent = mod.title;
-        title.className = 'text-lg font-semibold text-yellow-400 mb-2';
+        previewWrapper.appendChild(image);
+        moduleCard.appendChild(previewWrapper);
+      }
 
-        const description = document.createElement('p');
-        description.textContent = mod.description;
-        description.className = 'text-gray-300 text-sm mb-4';
+      const title = document.createElement('h3');
+      title.textContent = mod.title;
+      title.className = 'text-lg font-semibold text-yellow-400 mb-2';
 
-        const link = document.createElement('a');
-        link.href = mod.url;
-        link.target = '_blank';
-        link.textContent = 'Read More';
-        link.className = 'inline-block px-3 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 transition';
+      const description = document.createElement('p');
+      description.textContent = mod.description || '';
+      description.className = 'text-gray-300 text-sm mb-4';
 
-        moduleCard.appendChild(image);
-        moduleCard.appendChild(title);
-        moduleCard.appendChild(description);
-        moduleCard.appendChild(link);
+      const link = document.createElement('a');
+      link.href = mod.url;
+      link.target = '_blank';
+      link.textContent = 'Read More';
+      link.className = 'inline-block px-3 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 transition';
 
-        moduleContainer.appendChild(moduleCard);
-      });
+      moduleCard.appendChild(title);
+      moduleCard.appendChild(description);
+      moduleCard.appendChild(link);
 
-      content.appendChild(moduleContainer);
-    } else {
-      content.innerHTML += `<p class="text-gray-400">No modules available for this topic yet.</p>`;
-    }
+      moduleContainer.appendChild(moduleCard);
+    });
+
+    content.appendChild(moduleContainer);
+  } else {
+    content.innerHTML += `<p class="text-gray-400">No modules available for this topic yet.</p>`;
   }
+  document.getElementById('topicContent').classList.add('active');
+}
+
 
     // Populate sidebar buttons
     const buttonContainer = document.getElementById('topicButtons');
@@ -628,19 +709,6 @@ function loadTopicContent(topic) {
     mobileSelector.addEventListener('change', (e) => loadTopicContent(e.target.value));
 
     const moduleDiv = document.createElement("div");
-
-// Create image preview if image URL exists
-if (module.image) {
-  const previewWrapper = document.createElement("div");
-  previewWrapper.className = "preview-wrapper";
-
-  const img = document.createElement("img");
-  img.src = module.image;
-  img.alt = module.title;
-
-  previewWrapper.appendChild(img);   // <- Put image inside the wrapper
-  moduleDiv.appendChild(previewWrapper);
-}
   </script>
 </body>
 </html>
