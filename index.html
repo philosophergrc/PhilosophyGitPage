@@ -152,6 +152,7 @@
 
   /* Media querie for being mobile friendly */
   @media (max-width: 768px) {
+
   /* Hide desktop-only buttons */
   #topicButtons {
     display: none !important;
@@ -202,8 +203,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  .preview-wrapper:hover img {
+    transform: none !important;
+  }
+}
 </style>
-
 
 </head>
 
@@ -636,7 +641,6 @@ function loadTopicContent(topic) {
   heading.textContent = topic;
   content.appendChild(heading);
 
-
   const modules = topicModules[topic];
   if (modules && modules.length > 0) {
     const moduleContainer = document.createElement('div');
@@ -687,7 +691,6 @@ function loadTopicContent(topic) {
   }
   document.getElementById('topicContent').classList.add('active');
 }
-
 
     // Populate sidebar buttons
     const buttonContainer = document.getElementById('topicButtons');
