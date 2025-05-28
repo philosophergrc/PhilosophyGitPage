@@ -220,13 +220,18 @@
 
       <!-- Dropdown for Mobile -->
       <div class="md:hidden mb-4">
-        <select id="mobileSelector" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600">
+        
+        <!-- Updated select statement for screen reader-->
+        <label for="mobileSelector" class="sr-only">Choose a topic</label>
+        <select id="mobileSelector" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600" aria-label="Choose a philosophy topic">
           <option disabled selected>Select a topic</option>
         </select>
       </div>
 
       <!-- Buttons for Desktop -->
-      <div id="topicButtons" class="hidden md:flex flex-col gap-2 text-sm"></div>
+      <!-- Added tablist for screen reader-->
+      <div id="topicButtons" class="hidden md:flex flex-col gap-2 text-sm" role="tablist"></div>
+
     </aside>
 
     <!-- Main Content Area -->
@@ -647,8 +652,13 @@ function loadTopicContent(topic) {
     moduleContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4';
 
     modules.forEach(mod => {
+
+      // Updated for tab use with screen reader
       const moduleCard = document.createElement('div');
       moduleCard.className = 'bg-gray-700 p-4 rounded shadow hover:shadow-lg transition moduleCard';
+      moduleCard.setAttribute('tabindex', '0'); // Make it keyboard focusable
+      moduleCard.setAttribute('role', 'button'); // Announce as interactive
+      moduleCard.setAttribute('aria-label', mod.title); // Helpful for screen readers
 
       // Imgage preview wrapper — only add if image exists
       if (mod.image) {
@@ -657,7 +667,7 @@ function loadTopicContent(topic) {
 
         const image = document.createElement("img");
         image.src = mod.image;
-        image.alt = mod.title;
+        image.alt = mod.title || "Module image"; // Add alt for screen reader
         image.className = 'w-full h-32 object-cover rounded mb-2';
 
         previewWrapper.appendChild(image);
@@ -695,9 +705,36 @@ function loadTopicContent(topic) {
     // Populate sidebar buttons
     const buttonContainer = document.getElementById('topicButtons');
     topics.forEach(topic => {
+      
+      // Replaced for screen reader ability
+      //const btn = document.createElement('button');
+      //btn.textContent = topic;
+      //btn.className = 'text-left px-4 py-2 rounded bg-gray-800 hover:bg-yellow-400 hover:text-black transition btn-hover';
+      
       const btn = document.createElement('button');
       btn.textContent = topic;
+      btn.setAttribute('aria-label', `Load content for ${topic}`);
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('tabindex', '0');
+      btn.setAttribute('aria-selected', 'false');
+
       btn.className = 'text-left px-4 py-2 rounded bg-gray-800 hover:bg-yellow-400 hover:text-black transition btn-hover';
+
+      btn.addEventListener('click', () => {
+        loadTopicContent(topic);
+
+        // Highlight active button visually and semantically
+        Array.from(buttonContainer.children).forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+      });
+      // End of screen reader code for sidebar buttons
+      
+      
       btn.addEventListener('click', () => {
         loadTopicContent(topic);
         // Highlight active

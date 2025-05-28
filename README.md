@@ -23,6 +23,31 @@ This app is fully responsive. On small screens:
 - A dropdown menu allows users to select a topic.
 - Modules magically appear beneath the dropdown upon selection.
 
+## Accessibility & Screen Reader Improvements
+
+This application has been carefully enhanced to ensure accessibility and a smooth experience for users relying on screen readers and keyboard navigation. Key improvements include:
+
+- **Explicit ARIA Roles and Attributes**  
+  - Each topic button is marked with `role="tab"` to inform assistive technologies that these are part of a tablist interface.  
+  - `aria-selected` dynamically indicates which tab is currently active, improving clarity on the user’s location within the navigation.
+
+- **Clear and Descriptive Labels**  
+  - Buttons and interactive elements include explicit `aria-label` attributes, providing concise and meaningful descriptions for screen reader users.  
+  - Module images have meaningful `alt` text, either derived from the module title or fallback text (“Module image”) to describe visuals contextually.
+
+- **Keyboard Accessibility**  
+  - All interactive controls are reachable and operable via keyboard using `tabindex="0"`, ensuring users can navigate without a mouse.  
+  - Focus styles and roles improve usability for keyboard users, supporting seamless navigation through topics and modules.
+
+- **Semantic HTML and ARIA**  
+  - Semantic roles like `role="tab"` paired with `tabindex` support assistive technologies in understanding the page structure and interaction model.  
+  - Module cards are made keyboard-focusable and labeled with `aria-label` for clear identification.
+
+- **Optimized Link Behavior**  
+  - Links within modules are keyboard accessible and clearly marked, avoiding redundant tab stops to streamline navigation.
+
+These efforts aim to create an inclusive educational experience that meets accessibility standards and provides equal access to content for all users.
+
 ## Project Structure
 
 - index.html – Main application layout and script logic
