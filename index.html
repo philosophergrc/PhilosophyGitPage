@@ -7,8 +7,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body, html {
-      min-height: 100%;
-      overflow-x: hidden;
+     min-height: 100%;
+     overflow-x: hidden;
+     -webkit-overflow-scrolling: touch;
     }
 
     :root {
@@ -181,9 +182,8 @@
   }
 
   .moduleCard {
-    position: relative;
-    overflow: visible;
-    z-index: 1;
+      position: relative;
+      transform: translateZ(0); /* Creates stacking context */
   }
 
   .moduleCard img {
@@ -202,9 +202,27 @@
     font-size: 0.95rem;
   }
 }
+main {
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
 
 @media (max-width: 768px) {
-  .preview-wrapper:hover img {
+  /* Disable ALL transform effects */
+  .preview-wrapper img,
+  .preview-wrapper:hover img,
+  #topicContent ul li a,
+  #topicContent ul li a:hover {
+    transform: none !important;
+  }
+  
+  /* Add touch-action to prevent gesture conflicts */
+  .preview-wrapper,
+  .moduleCard {
+    touch-action: pan-y; /* Only allow vertical scrolling */
+  }
+  /* Add this to disable the .active transform */
+  .active {
     transform: none !important;
   }
 }
@@ -268,14 +286,14 @@ const topicModules = {
     {
       title: "Part 1: What is Philosophy?",
       url: "https://www.philosop-her.com/gig-%CF%86-philosophy/introduction-to-philosophy-logic",
-      description: "Explore the fundamental question: What is philosophy?",
+     // description: "Explore the fundamental question: What is philosophy?",  slashed out for consisteny can just remove // if you want it to show up
       image: "images/module_1/what-is-ph.png"
       
     },
     {
       title: "Part 2: Why Study Philosophy?",
       url: "https://www.philosop-her.com/learn-something/why",
-      description: "Explore the fundamental question: What is philosophy?",
+     // description: "Explore the fundamental question: What is philosophy?",   
       image: "images/module_1/why-ph.png"
     },
     {
@@ -764,12 +782,12 @@ function loadTopicContent(topic) {
       // End of screen reader code for sidebar buttons
       
       
-      btn.addEventListener('click', () => {
-        loadTopicContent(topic);
+     // btn.addEventListener('click', () => {
+        // loadTopicContent(topic);
         // Highlight active
-        Array.from(buttonContainer.children).forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
+       // Array.from(buttonContainer.children).forEach(b => b.classList.remove('active'));
+       // btn.classList.add('active');
+     // });
       buttonContainer.appendChild(btn);
     });
     buttonContainer.classList.remove('hidden');
